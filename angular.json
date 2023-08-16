@@ -67,15 +67,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options":  {
+            "browserTarget": "pkdx-front-end:build",
+            "proxyConfig": "src/proxy.config.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "pkdx-front-end:build:production"
             },
             "development": {
               "browserTarget": "pkdx-front-end:build:development"
-            },
-            "options":  {
-              "proxyConfig": "proxy.config.json"
             }
           },
           "defaultConfiguration": "development"

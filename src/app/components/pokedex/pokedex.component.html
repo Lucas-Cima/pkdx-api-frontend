@@ -1,13 +1,16 @@
 <div class="Pokedex" fxLayout="row wrap">
-    <mat-card class="pokemon-card" fxFlex="33%" *ngFor="let pokemon of pokedex">
+    <mat-card class="pokemon-card" fxFlex="33%" *ngFor="let pokemon of nationaldex">
         <mat-card-content>
             <mat-card-title class="poke-header">
-                #{{pokemon.DexNum}} {{pokemon.Name}}
+                #{{pokemon.DexNum}}  <a routerLink="['/pokedex', pokemon.DexNum]">{{pokemon.Name}}</a>
             </mat-card-title>
             <table>
                 <span class="pic"><img src={{pokemon.ImgURL}}></span>
+                <tr class="poke-types">
+                    <span class="type1" [style.Color]="colorMapping[pokemon.Element]">{{pokemon.Element}}</span>
+                    <span class="type2" [style.Color]="colorMapping[pokemon.SecElement]">{{pokemon.SecElement}}</span>
+                </tr>
                 <tr class="poke-species">Species: The {{pokemon.Species}}</tr>
-                <tr class="poke-type">Type(s): {{pokemon.Element}}  {{pokemon.SecElement}}</tr>
                 <tr class="poke-specs">Height: {{pokemon.Height}} and Weight: {{pokemon.Weight}}</tr>
                 <tr class="poke-region">Region of Origin: {{pokemon.Region}}</tr>
                 <tr class="poke-entry">Pokedex Entry: <br>

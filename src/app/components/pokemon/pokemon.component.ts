@@ -26,4 +26,26 @@ export class PokemonComponent implements OnInit {
       console.log(pokedex);
     });
   }
+  colorMapping: any = {
+    Grass: '#7c5',
+    Fire: '#f42',
+    Water: '#39f',
+    Normal: '#aa9',
+    Flying: '#89f',
+    Electric: '#fc3',
+    Rock: '#ba6',
+    Ground: '#db5',
+    Bug: '#ab2',
+    Fighting: '#b54',
+    Psychic: '#f59',
+    Fairy: '',
+    Poison: '#a59',
+    Dark: '#754',
+    Ghost: '#66b',
+    Ice: '#6cf',
+    Steel: '#aab',
+    Dragon: '#76e'
+};
+
+
 }

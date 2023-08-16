@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { PokedexService } from "../../services/pokedex/pokedex.service";
 import { HttpClient } from '@angular/common/http'
 import { map } from 'rxjs/operators'
 import { FetchPokemon } from 'src/models/pokemon';
 import { PokemonComponent } from '../pokemon/pokemon.component';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-pokedex',
@@ -10,26 +12,48 @@ import { PokemonComponent } from '../pokemon/pokemon.component';
   styleUrls: ['./pokedex.component.css']
 })
 export class PokedexComponent implements OnInit {
-  pokedex: FetchPokemon[];
+  subscription: Subscription;
+  nationaldex: FetchPokemon[];
+  error: Error;
   Id: string;
+  colorMapping: any = {
+    Grass: '#7c5',
+    Fire: '#f42',
+    Water: '#39f',
+    Normal: '#aa9',
+    Flying: '#89f',
+    Electric: '#fc3',
+    Rock: '#ba6',
+    Ground: '#db5',
+    Bug: '#ab2',
+    Fighting: '#b54',
+    Psychic: '#f59',
+    Fairy: '#e9e',
+    Poison: '#a59',
+    Dark: '#754',
+    Ghost: '#66b',
+    Ice: '#6cf',
+    Steel: '#aab',
+    Dragon: '#76e'
+  };
 
-  constructor(private http: HttpClient) { }
+
+  constructor(
+    private pokedexService: PokedexService
+  ) { }
 
   ngOnInit(): void{
-    this.FetchPokedex();
-  
+    this.getNationalPokedex();
   }
 
-
-  FetchPokedex() {
-    return this.http.get('/pokedex/national')
-    .pipe(map
-    ((Response: any)=>{
-      this.pokedex = Response;
-      return this.pokedex;
-    })).subscribe(pokedex => {
-      console.log(pokedex);
-    });
+  getNationalPokedex() {
+    this.subscription = this.pokedexService.getNationalPokedex().subscribe((pokedex: FetchPokemon[]) => {
+      this.nationaldex = pokedex;
+    },
+      () => {
+      console.log("error caught");
+      });
   }
-
 }
+
+

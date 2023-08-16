@@ -10,4 +10,5 @@ export class FetchPokemon {
 	Region:     string;
 	PkdxEntry:  string;
 	ImgURL:		string;
+	Variant:	string;
 }

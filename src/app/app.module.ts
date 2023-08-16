@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +26,10 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
     MatCardModule,
     FlexLayoutModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule.forRoot([
+      {path: 'app-pokemon', component: PokemonComponent}
+    ])
   ],
   providers: [PokedexService],
   bootstrap: [AppComponent]
